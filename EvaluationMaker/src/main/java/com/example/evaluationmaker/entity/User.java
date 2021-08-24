@@ -1,4 +1,4 @@
-package com.example.entity;
+package com.example.evaluationmaker.entity;
 
 import org.springframework.stereotype.Component;
 
