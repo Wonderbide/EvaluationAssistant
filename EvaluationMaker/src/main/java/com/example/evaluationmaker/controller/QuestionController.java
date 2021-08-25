@@ -2,27 +2,42 @@ package com.example.evaluationmaker.controller;
 
 import com.example.evaluationmaker.entity.Question;
 import com.example.evaluationmaker.service.QuestionService;
+import netscape.javascript.JSObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@RestController(value = "question")
 public class QuestionController {
 
+    private final QuestionService questionService;
+
     @Autowired
-    QuestionService questionService;
-
-    @PostMapping
-    public void PostQuestion(){
-
+    public QuestionController (QuestionService questionService){
+        this.questionService = questionService;
     }
 
-    @GetMapping("question")
+    @PostMapping("save_question")
+    public void PostQuestion(@RequestBody Question question){
+        questionService.CreatQuestion(question);
+    }
+
+    @GetMapping("find_question")
     public List<Question> GetQuestions (){
         return questionService.getAllQuestions();
+    }
+
+    @DeleteMapping("delete_question")
+    public void DeleteQuestion(@RequestBody long id){
+        questionService.deleteQuestion(id);
+    }
+
+    @PatchMapping("update_question/{questionID}")
+    public Question UpdateQuestion(
+            @PathVariable(value = "questionID") long questionID,
+            @RequestBody Question question){
+        return questionService.updateQuestion(questionID, question);
     }
 
 }

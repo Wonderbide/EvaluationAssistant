@@ -17,4 +17,24 @@ public class QuestionService {
     public List<Question> getAllQuestions (){
         return questionRepository.findAll();
     }
+
+    public Question getQuestionById(long id) {return  questionRepository.findById(id).get();}
+
+    public Question CreatQuestion(Question question) {
+        return questionRepository.save(question);
+    }
+
+    public void deleteQuestion(long id) {
+        questionRepository.deleteById(id);
+    }
+
+    public Question updateQuestion(long id, Question question) {
+        Question oldQuestion = questionRepository.findById(id).get();
+
+        oldQuestion.setSubject(question.getSubject());
+        oldQuestion.setTitle(question.getTitle());
+        oldQuestion.setWording(question.getWording());
+
+        return questionRepository.save(oldQuestion);
+    }
 }
