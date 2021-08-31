@@ -1,17 +1,17 @@
 package com.example.evaluationmaker.service;
 
 import com.example.evaluationmaker.entity.Question;
-import com.example.evaluationmaker.repository.QuestionImpl;
+import com.example.evaluationmaker.repository.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Component
+@Service
 public class QuestionService {
     @Autowired
-    QuestionImpl questionRepository;
+    QuestionRepository questionRepository;
 
 
     public List<Question> getAllQuestions (){
