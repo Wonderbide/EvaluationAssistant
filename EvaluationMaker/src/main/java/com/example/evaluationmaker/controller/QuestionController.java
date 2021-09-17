@@ -18,21 +18,25 @@ public class QuestionController {
         this.questionService = questionService;
     }
 
+    @CrossOrigin
     @PostMapping("save_question")
     public void PostQuestion(@RequestBody Question question){
         questionService.CreatQuestion(question);
     }
 
+    @CrossOrigin
     @GetMapping("find_question")
     public List<Question> GetQuestions (){
         return questionService.getAllQuestions();
     }
 
-    @DeleteMapping("delete_question")
-    public void DeleteQuestion(@RequestBody long id){
+    @CrossOrigin
+    @DeleteMapping("delete_question/{questionID}")
+    public void DeleteQuestion(@PathVariable(value = "questionID") long id){
         questionService.deleteQuestion(id);
     }
 
+    @CrossOrigin
     @PatchMapping("update_question/{questionID}")
     public Question UpdateQuestion(
             @PathVariable(value = "questionID") long questionID,
