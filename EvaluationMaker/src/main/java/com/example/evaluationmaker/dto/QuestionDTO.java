@@ -11,7 +11,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class QuestionDTO {
-    private long questionID;
+    private long id;
     private long authorID;
     private String subject;
     private String title;

@@ -1,6 +1,7 @@
 package com.example.evaluationmaker.entity;
 
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -9,14 +10,15 @@ import javax.persistence.Id;
 public class Question {
     @Id
     @GeneratedValue
-    private long questionID;
+    @Column(name = "questionID")
+    private long id;
     private long authorID;
     private String subject;
     private String title;
     private String wording;
 
     public Question(long questionID, long authorID, String subject, String title, String wording) {
-        this.questionID = questionID;
+        this.id = questionID;
         this.authorID = authorID;
         this.subject = subject;
         this.title = title;
@@ -26,12 +28,12 @@ public class Question {
     public Question() {
     }
 
-    public long getQuestionID() {
-        return questionID;
+    public long getId() {
+        return id;
     }
 
-    public void setQuestionID(long questionID) {
-        this.questionID = questionID;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public long getAuthorID() {
